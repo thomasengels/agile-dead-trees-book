@@ -3,13 +3,14 @@ package org.learning.books.repository;
 
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
+import org.learning.books.domain.Book;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "books")
 @NoArgsConstructor
-public class BookEntity {
+public class BookEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -20,11 +21,16 @@ public class BookEntity {
     @Column(name = "publishingDate")
     private LocalDate publishingDate;
 
-    public void setId(Long id) {
+    public BookEntity(Long id, String title, LocalDate publishingDate) {
         this.id = id;
+        this.title = title;
+        this.publishingDate = publishingDate;
     }
 
-    public Long getId() {
-        return id;
+    public Book toDomain() {
+        return Book.builder()
+                .id(this.id)
+                .title(this.title)
+                .build();
     }
 }
