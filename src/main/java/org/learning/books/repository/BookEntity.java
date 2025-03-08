@@ -21,11 +21,17 @@ public class BookEntity{
     @Column(name = "publishingDate")
     private LocalDate publishingDate;
 
-    public BookEntity(Long id, String title, LocalDate publishingDate) {
+    private BookEntity(Long id, String title, LocalDate publishingDate) {
         this.id = id;
         this.title = title;
         this.publishingDate = publishingDate;
     }
+
+    public static BookEntity create(String title, LocalDate publishingDate){
+        return new BookEntity(null, title, publishingDate);
+    }
+
+
 
     public Book toDomain() {
         return Book.builder()

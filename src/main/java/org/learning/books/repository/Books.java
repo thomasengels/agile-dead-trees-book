@@ -8,4 +8,8 @@ import java.util.List;
 @Repository
 public interface Books  {
     List<Book> findAll();
+    Book save(Book book);
+    Book findById(Long id);
+    void deleteById(Long id);
+    List<Book> findByTitle(String title);
 }

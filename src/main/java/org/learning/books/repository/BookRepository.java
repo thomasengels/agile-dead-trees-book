@@ -1,16 +1,6 @@
 package org.learning.books.repository;
 
-import org.learning.books.domain.Book;
-import org.springframework.stereotype.Component;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-import java.util.List;
-import java.util.stream.StreamSupport;
-
-@Component
-public class BookRepository extends AbstractRepository<BookEntity, Long> implements Books {
-    public List<Book> findAll(){
-        return StreamSupport.stream(super.findAll().spliterator(), false)
-                .map(BookEntity::toDomain)
-                .toList();
-    }
-}
+public interface BookRepository extends JpaRepository<BookEntity, Long>, JpaSpecificationExecutor<BookEntity> { }
